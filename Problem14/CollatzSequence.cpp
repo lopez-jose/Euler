@@ -1,3 +1,130 @@
+// Problem14LongestCollatzSequence.cpp : Defines the entry point for the console application.
+/*
+The following iterative sequence is defined for the set of positive integers:
+
+n ? n/2 (n is even)
+n ? 3n + 1 (n is odd)
+
+Using the rule above and starting with 13, we generate the following sequence:
+
+13 ? 40 ? 20 ? 10 ? 5 ? 16 ? 8 ? 4 ? 2 ? 1
+It can be seen that this sequence (starting at 13 and finishing at 1) contains 10 terms. Although it has not been proved yet (Collatz Problem), it is thought that all starting numbers finish at 1.
+
+Which starting number, under one million, produces the longest chain?
+
+NOTE: Once the chain starts the terms are allowed to go above one million.
+
+*/
+/*Some thoughts on how to improve efficiency
+	You are going through every number, so that's good
+	But whenever you change the number by dividing it by 2 if even
+	or 3num+1 if it's odd, you often go back to computing the same number
+	So, what you could do is have a list of stored chainlengths, for numbers that you have already computed
+	and whenver the current number is equal to that number, just get the chainlength int from already computed
+	object
+*/
+
+
+#include <stdio.h>
+#include <iostream>
+#include <time.h>
+using namespace std;
+int powerOfTwo[31];
+int countOfLoops = 0;
+
+int returnChainCount(int input)
+{
+	bool isOne = false;
+	int chainCount = 1;
+	int num = input;
+	bool isPower = false;
+	int count = 0;
+	while (!isOne)
+	{
+		
+		if (num == 1)
+			return chainCount;
+		
+		
+		
+
+
+
+
+		if (num % 2 == 0)
+		{
+			
+			for (int i = 0; powerOfTwo[i]<=num; i++)
+			{
+				
+				
+				countOfLoops++;
+				if (num == powerOfTwo[i])
+				{
+					//cout << num << "\t is a power of two" << endl;
+					return (chainCount + i);
+				}
+			}
+			num = num / 2;
+		}
+		else {
+			num = (3 * num) + 1;
+		}
+		chainCount++;
+		countOfLoops++;
+
+	}
+}
+
+
+int main()
+{
+	clock_t time;
+	time = clock();
+	for (int i = 0; i < 31; i++)
+	{
+		powerOfTwo[i] = (int)pow(2.0, i);
+		cout << powerOfTwo[i] << endl;
+	}
+	const int limit = 999999;
+
+	long long sum = 0;
+	int num = 0;
+	bool isOne = false;
+	//int chainCount = 1;
+	int maxChainCount = 0;
+	int currentChain = 0;
+	int maxNumber = 0;
+	for (int start = 1; start <= limit; start++)
+	{
+		currentChain = returnChainCount(start);
+		if (currentChain > maxChainCount)
+		{
+			maxChainCount = currentChain;
+			maxNumber = start; 
+
+		}
+		if(start %50000== 0)
+			cout << "Current number = " << start << "\t Current Chain = " << currentChain << endl;
+		
+	}
+
+
+	cout << "Number = " << maxNumber << "\tChainCount = " << maxChainCount << endl;
+	time = clock() - time;
+	cout << "The time = " << time << "ms" << endl;
+	cout << "Count of Loops=\t" << countOfLoops << endl;
+	int pause; 
+	cin >> pause;
+    return 0;
+}
+
+
+
+
+/*
+
+
 // Problem14!!.cpp : Defines the entry point for the console application.
 //
 
@@ -110,6 +237,32 @@ int main()
 	cin >> pause;
 	return 0;
 }
+
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
