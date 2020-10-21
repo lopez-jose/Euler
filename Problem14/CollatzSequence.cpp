@@ -1,3 +1,119 @@
+// Problem 14 LongestCollatz.cpp : Defines the entry point for the console application.
+//
+
+#include "stdafx.h"
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+const int length = 20000;
+int list[length] = { 0 };
+int main()
+{
+	for (int i = 1; i < 20000; i++)
+	{
+		int isEnd = false;
+		int count = 1;
+		int num = i;
+		while (!isEnd)
+		{
+			
+			if (num % 2 == 0)
+			{
+				num = num / 2;
+				count++;
+			}
+			else if(num!=1)
+			{
+				num = (3 * num) + 1;
+				count++;
+			}
+			else {
+				isEnd = true;
+				//cout << i << " Number of terms = " << count << endl;
+				list[i] = count;
+			}
+		}
+	}
+	for (int i = 0; i < 5000; i++)
+	{
+		//cout << list[i] << endl;
+	}
+	int maxCount = 0;
+	int maxNumber = 0;
+	
+	for (int i = 1; i < 1000000; i++)
+	{
+		bool isEnd = false;
+		int count = 1;
+		long long num = i;
+	
+		while (!isEnd)
+		{
+			
+			if (num < 20000 && num>0)
+			{
+				int j = list[num];
+				if(j>0)
+				count += j;
+				isEnd = true;
+			}
+			else if (num % 2 == 0)
+			{
+				num = num / 2;
+				count++;
+			}
+			else if (num != 1)
+			{
+				num = (3 * num) + 1;
+				count++;
+			}
+			else {
+				isEnd = true;
+			}
+		}
+		if (count > maxCount)
+		{
+			maxCount = count;
+			maxNumber = i;
+		}
+		
+		if (i % 10000 == 0)
+		{
+
+			cout << "At Number \t" << i << "\tThe Max Number is still " << maxNumber << "\tMaxCount = " << maxCount << endl;
+		}
+	}
+	cout << "MaxNumber chain under 1000000 = " << maxNumber << endl;
+	
+	int pause;
+	cin >> pause;
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Problem14LongestCollatzSequence.cpp : Defines the entry point for the console application.
 /*
 The following iterative sequence is defined for the set of positive integers:
