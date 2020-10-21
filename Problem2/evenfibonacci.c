@@ -37,6 +37,6 @@ int main(int argc, const char * argv[]) {
         
         
     }
-    printf("The sum of even fibonacci number = %d",sum);
+    printf("The sum of even fibonacci number = %d\n",sum);
     return 0;
 }
