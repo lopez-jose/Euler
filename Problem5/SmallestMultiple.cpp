@@ -13,11 +13,15 @@ int main()
 	bool isMultiple= false;
 	int count = 0;
 	int pause;
-	int list[20] = { 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20};
+	int list[12] = {2,3,11,12,13,14,15,16,17,18,19,20};
+
+
+	// if a number is divisible by 20, then it is also divisible by 10 and 2, so then we only have to check 20
+	// if divisible by 18 then it is also divisible by 9 and 2
 	while(!isMultiple)
 	{
 		//here we will go through a number and find the divisible value;
-		for (int start = 0; start < 20; start++)
+		for (int start = 0; start < 12; start++)
 		{
 			if (number% list[start] == 0)
 			{
@@ -26,7 +30,7 @@ int main()
 			}
 		}
 
-		if (count >= 20)
+		if (count >= 12)
 		{
 			smallestMultiple = number;
 			isMultiple = true;
