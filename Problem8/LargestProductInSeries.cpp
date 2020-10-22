@@ -51,12 +51,12 @@ int main()
 	length = numberList.length();
 
 	int numbers[1000];
-
+	int x;
 	//I'm getting an issue with the newline character.
 	for (int start = 0; start < length; start++)
 	{
-		int x = (int)numberList.at(start) - 48;
-		if (x >= 0)
+		x = (int)numberList.at(start) - 48;
+		if (x >= 0 && x <= 10)
 		{
 			numbers[start] = x; // to get the correct ascii representation value
 			cout << numbers[start];
@@ -66,24 +66,39 @@ int main()
 			cout << '\n';
 		}
 	}
-
+	cout << "LIMIT \n\n\n"
+		 << endl;
 	int isEnd = false;
-	int startPosition = 1;
-	long long int product = numbers[0];
-	long long int productMax = 0;
+	int startPosition = 0;
+	int product = numbers[0];
+	int productMax = 0;
 
 	int stepSize = 4;
+
+	for (int i = 0; i < 1000; i++)
+	{
+
+		cout << numbers[i];
+		if (i % 50 == 0)
+		{
+			cout << endl;
+		}
+	}
+
+	cout << "\n Limit of test printout" << endl;
 
 	while (!isEnd) //will be true when startPositon+13 reaches 1000
 	{
 		if (startPosition + stepSize < 1000)
 		{
-			for(int i = startPosition; i < (startPosition+stepSize-1); i++)
+			product = numbers[startPosition];
+			cout << product << " ";
+			for (int i = startPosition + 1; i < (startPosition + stepSize); i++)
 			{
-				product = product*numbers[i];
+				product = product * numbers[i];
 				cout << numbers[i] << " ";
 			}
-				cout << endl;
+			cout << "product = " << product << endl;
 		}
 		else
 		{
@@ -93,7 +108,7 @@ int main()
 		{
 			productMax = product;
 		}
-		product = 0;
+
 		startPosition++;
 	}
 	//INTEGER OVERFLOW!
