@@ -25,7 +25,6 @@ The four adjacent digits in the 1000-digit number that have the greatest product
 
 Find the thirteen adjacent digits in the 1000-digit number that have the greatest product. What is the value of this product?*/
 
-
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -44,60 +43,63 @@ int main()
 		{
 			cout << line << '\n';
 			numberList += line;
-
 		}
 		myfile.close();
 	}
-		cout << "\n\n\n\n\n";
+	cout << "\n\n\n\n\n";
 	int length = 0;
 	length = numberList.length();
 
- int numbers[1000];
-	
+	int numbers[1000];
 
-	//I'm getting an issue with the newline character. 
+	//I'm getting an issue with the newline character.
 	for (int start = 0; start < length; start++)
 	{
-		int x = (int)numberList.at(start)-48;
-		if(x>=0)
+		int x = (int)numberList.at(start) - 48;
+		if (x >= 0)
 		{
-		numbers[start] = (int)numberList.at(start)-48; // to get the correct ascii representation value
-		cout << numbers[start];
-		}else{
+			numbers[start] = x; // to get the correct ascii representation value
+			cout << numbers[start];
+		}
+		else
+		{
 			cout << '\n';
 		}
 	}
-	
+
 	int isEnd = false;
-	int sNum = 0; //start Number
-	int positionMax = 0;
-	int startPosition = 0;
-	 long int product = 0;
-	 long int productMax = 0;
-	
-	while (!isEnd)//will be true when startPositon+13 reaches 1000
+	int startPosition = 1;
+	long long int product = numbers[0];
+	long long int productMax = 0;
+
+	int stepSize = 4;
+
+	while (!isEnd) //will be true when startPositon+13 reaches 1000
 	{
-		if (startPosition + 13 < 1000)
+		if (startPosition + stepSize < 1000)
 		{
-			product = long(numbers[startPosition] * numbers[startPosition + 1] * numbers[startPosition + 2] * numbers[startPosition + 3] *
-				numbers[startPosition + 4] * numbers[startPosition + 5] * numbers[startPosition + 6] * numbers[startPosition + 7] * numbers[startPosition + 8] * numbers[startPosition + 9]
-				* numbers[startPosition + 10] * numbers[startPosition + 11] * numbers[startPosition + 12]);
+			for(int i = startPosition; i < (startPosition+stepSize-1); i++)
+			{
+				product = product*numbers[i];
+				cout << numbers[i] << " ";
+			}
+				cout << endl;
 		}
-		else {
+		else
+		{
 			isEnd = true;
 		}
 		if (product > productMax)
 		{
 			productMax = product;
 		}
+		product = 0;
 		startPosition++;
 	}
 	//INTEGER OVERFLOW!
 	cout << "\nThe max product of 13 series of numbers = " << productMax << endl;
-	
-	cin >> input;
-	
-    return 0;
-}
 
-     
+	//cin >> input;
+
+	return 0;
+}
