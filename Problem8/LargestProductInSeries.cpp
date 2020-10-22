@@ -48,17 +48,18 @@ int main()
 		}
 		myfile.close();
 	}
+		cout << "\n\n\n\n\n";
 	int length = 0;
 	length = numberList.length();
 
-	long int numbers[1000];
+ int numbers[1000];
 	
 
 	//I'm getting an issue with the newline character. 
 	for (int start = 0; start < length; start++)
 	{
 		int x = (int)numberList.at(start)-48;
-		if(x>0)
+		if(x>=0)
 		{
 		numbers[start] = (int)numberList.at(start)-48; // to get the correct ascii representation value
 		cout << numbers[start];
