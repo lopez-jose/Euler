@@ -32,8 +32,6 @@ Find the thirteen adjacent digits in the 1000-digit number that have the greates
 
 using namespace std;
 
-
-
 int main()
 {
 	string line;
@@ -53,17 +51,24 @@ int main()
 	int length = 0;
 	length = numberList.length();
 
-	//int* numbers = new int[length];
 	long int numbers[1000];
 	
+
+	//I'm getting an issue with the newline character. 
 	for (int start = 0; start < length; start++)
 	{
-		numbers[start] = (long)numberList.at(start)-48;
-		cout << numbers[start] << '\t';
+		int x = (int)numberList.at(start)-48;
+		if(x>0)
+		{
+		numbers[start] = (int)numberList.at(start)-48; // to get the correct ascii representation value
+		cout << numbers[start];
+		}else{
+			cout << '\n';
+		}
 	}
+	
 	int isEnd = false;
 	int sNum = 0; //start Number
-	int eNum = 4; //end number start+4;
 	int positionMax = 0;
 	int startPosition = 0;
 	int storedNumbers[4];
