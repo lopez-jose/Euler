@@ -72,7 +72,6 @@ int main()
 	int sNum = 0; //start Number
 	int positionMax = 0;
 	int startPosition = 0;
-	int storedNumbers[4];
 	 long int product = 0;
 	 long int productMax = 0;
 	
